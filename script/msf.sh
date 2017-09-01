@@ -11,22 +11,16 @@ case $msfgo in
 cd $HOME
 apt update
 apt upgrade
-echo "Install Requirements"
 apt install autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev \
     postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
     postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar
-
-curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.2.tar.gz
-tar -xf 4.16.2.tar.gz
-mv metasploit-framework-4.16.2 metasploit-framework
+echo "Зависимости Установлены"
+git clone https://github.com/timwr/metasploit-framework --depth 1
 cd $HOME/metasploit-framework/
-sed '/rbnacl/d' -i Gemfile.lock
-sed '/rbnacl/d' -i metasploit-framework.gemspec
-echo "Installing bundler"
 gem install bundler
-echo "Installing nokogiri"
 gem install nokogiri -- --use-system-libraries
 
+echo "Устанавливаем Network Interface"
 cd $HOME
 gem unpack network_interface -v '0.0.1'
 cd $HOME/network_interface-0.0.1/
@@ -38,8 +32,9 @@ gem install network_interface-0.0.1.gem
 cd ..
 rm -rf network_interface-0.0.1
 
-echo "Installing grpc"
-sed 's|grpc (.*|grpc (1.4.1)|g' -i $HOME/metasploit-framework/Gemfile.lock
+echo "Устанавливаем GRPC"
+cd $HOME/metasploit-framework/
+sed 's|grpc (.*|grpc (1.4.1)|g' -i Gemfile.lock
 gem unpack grpc -v 1.4.1
 cd $HOME/grpc-1.4.1/
 curl -LO https://raw.githubusercontent.com/grpc/grpc/v1.4.1/grpc.gemspec
@@ -48,29 +43,32 @@ patch -p1 < extconf.patch
 gem build grpc.gemspec
 gem install grpc-1.4.1.gem
 cd ..
-rm -r grpc-1.4.1
+rm -rf grpc-1.4.1
 
-echo "Installig gems"
+echo "Установка GEM"
 cd $HOME/metasploit-framework
 bundle install -j5
 
-echo "Performing shebang fix"
+echo "Выполнение shebang fix"
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
+echo "Установка завершена"
+
+cd $HOME
+mv $HOME/metasploit-framework $HOME/msfconsole
+echo "msfconsole установлена, начние пункт 2"
 ;;
 2)
-echo "Pereforming Data error"
+echo "Исправляем ощибку rmf и datax"
 cd $HOME
 pkg install -y termux-elf-cleaner
 termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.4.0/gems/pg-0.20.0/lib/pg_ext.so
-echo "Finish Installation"
+echo "Datax ошибка устранена"
 cd $HOME
 gem uninstall rb-readline
-cd $HOME/metasploit-framework/
-mv metasploit-framework msfconsole 
-echo "Edit Gemfile.lock in line 218 rb-readline (0.5.4) in (0.5.5)"
-echo "termux-chroot and gem install rbnacl-libsodium - v '1.0.11'"
 cd $HOME/msfconsole/
+echo "Edit Gemfile.lock in line 218 rb-readline (0.5.4) in (0.5.5)"
 echo "and builde install"
+echo "termux-chroot and gem install rbnacl-libsodium - v '1.0.11'"
 ;;
 3)
 echo "Создаем базу данных"
@@ -81,9 +79,8 @@ pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log start
 createuser msf
 createdb msfdb
 pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log stop
-chmod 700 $HOME/Storm/script/msfstart.sh
-cp $HOME/Storm/script/msfstart.sh $HOME/msfconsole/
-cp $HOME/Storm/script/msfstop.sh $HOME/msfconsole/
+cp -r $HOME/Storm/script/msfstart.sh $HOME/msfconsole/
+cp -r $HOME/Storm/script/msfstop.sh $HOME/msfconsole/
 echo "Установка авершена запустите bash msfstart.sh"
 echo "Добавьте bash msfstop.sh в nano msfconsole 27 линию"
 ;;
