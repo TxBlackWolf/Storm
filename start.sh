@@ -14,8 +14,8 @@ case $startgo in
 1)
 echo "Начало настройки"
 cd $HOME
-pkg update -y
-pkg upgrade -y
+pkg update
+pkg upgrade
 pkg install -y python2 python2-dev python python-dev git nmap hydra nano ncdu proot fish zsh tsu coreutils wget tar bash clang curl libclang macchanger make man openssl openssl-dev
 echo "Настройка завершена"
 ;;
