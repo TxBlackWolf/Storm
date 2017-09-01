@@ -33,6 +33,7 @@ cd $HOME
 rm -rf $HOME/.local/share/fish/
 cp -r $HOME/Storm/prog/fish/ $HOME/.local/share/
 echo "Завершено"
+echo "Перезагрузите программу CTR - D , Enter"
 ;;
 4)
 bash $HOME/Storm/script/msf.sh
