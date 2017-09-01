@@ -12,7 +12,7 @@ case $bonus in
 echo "Начало Установки Reaver"
 cd $HOME
 git clone https://github.com/Deathlive/reaver-wps-fork-t6x
-mv reaver-wps-fork-t6x reaver
+mv $HOME/reaver-wps-fork-t6x $HOME/reaver
 cd $HOME/reaver/src/
 sh configure
 make
