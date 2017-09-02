@@ -15,7 +15,7 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
     postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
     postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar
 echo "Зависимости Установлены"
-git clone https://github.com/timwr/metasploit-framework --depth 1
+git clone https://github.com/rapid7/metasploit-framework --depth 1
 cd $HOME/metasploit-framework/
 gem install bundler
 gem install nokogiri -- --use-system-libraries
@@ -36,7 +36,7 @@ echo "Устанавливаем GRPC"
 cd $HOME/metasploit-framework/
 sed 's|grpc (.*|grpc (1.4.1)|g' -i Gemfile.lock
 gem unpack grpc -v 1.4.1
-cd $HOME/grpc-1.4.1/
+cd $HOME/metasploit-framework/grpc-1.4.1/
 curl -LO https://raw.githubusercontent.com/grpc/grpc/v1.4.1/grpc.gemspec
 curl -L https://wiki.termux.com/images/b/bf/Grpc_extconf.patch -o extconf.patch
 patch -p1 < extconf.patch
@@ -76,13 +76,10 @@ cd $HOME
 mkdir ~/.msfdb
 initdb ~/.msfdb
 pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log start
+echo "Старт сервера"
 createuser msf
 createdb msfdb
-pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log stop
-cp -r $HOME/Storm/script/msfstart.sh $HOME/msfconsole/
-cp -r $HOME/Storm/script/msfstop.sh $HOME/msfconsole/
 echo "Установка авершена запустите bash msfstart.sh"
-echo "Добавьте bash msfstop.sh в nano msfconsole 27 линию"
 ;;
 4)
 exit 0
