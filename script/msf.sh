@@ -1,5 +1,11 @@
 #!/data/data/com.termux/files/usr/bin/sh
 
+_$$$$___$$$$$$___$$$$___$$$$$___$$___$$
+$$________$$____$$__$$__$$__$$__$$$_$$$
+_$$$$_____$$____$$__$$__$$$$$___$$_$_$$
+____$$____$$____$$__$$__$$__$$__$$___$$
+_$$$$_____$$_____$$$$___$$__$$__$$___$$
+
 echo "1 Начать установку Metasploit Framework"
 echo "2 Исправить ошибки rmf и datax"
 echo "3 Создать базу данных для MSF"
@@ -15,22 +21,10 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
     postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
     postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar
 echo "Зависимости Установлены"
-git clone https://github.com/rapid7/metasploit-framework --depth 1
+git clone https://github.com/rapid7/metasploit-framework
 cd $HOME/metasploit-framework/
 gem install bundler
 gem install nokogiri -- --use-system-libraries
-
-echo "Устанавливаем Network Interface"
-cd $HOME
-gem unpack network_interface -v '0.0.1'
-cd $HOME/network_interface-0.0.1/
-sed 's|git ls-files|find -type f|' -i network_interface.gemspec
-curl -L https://wiki.termux.com/images/6/6b/Netifaces.patch -o netifaces.patch
-patch -p1 < netifaces.patch
-gem build network_interface.gemspec
-gem install network_interface-0.0.1.gem
-cd ..
-rm -rf network_interface-0.0.1
 
 echo "Устанавливаем GRPC"
 cd $HOME/metasploit-framework/
@@ -45,11 +39,25 @@ gem install grpc-1.4.1.gem
 cd ..
 rm -rf grpc-1.4.1
 
+echo "Устанавливаем rbnacl-libsodium"
+gem unpack rbnacl-libsodium -v'1.0.13'
+cd rbnacl-libsodium-1.0.13
+termux-fix-shebang ./vendor/libsodium/configure ./vendor/libsodium/build-aux/*
+sed 's|">= 3.0.1"|"~> 3.0", ">= 3.0.1"|g' -i rbnacl-libsodium.gemspec
+sed 's|">= 10"|"~> 10"|g' -i rbnacl-libsodium.gemspec
+curl -LO https://Auxilus.github.io/configure.patch
+patch ./vendor/libsodium/configure < configure.patch
+gem build rbnacl-libsodium.gemspec
+gem install rbnacl-libsodium-1.0.13.gem
+cd .. 
+rm -rf rbnacl-libsodium-1.0.13
+
 echo "Установка GEM"
 cd $HOME/metasploit-framework
 bundle install -j5
 
 echo "Выполнение shebang fix"
+cd $HOME/metasploit-framework
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 echo "Установка завершена"
 
@@ -68,7 +76,6 @@ gem uninstall rb-readline
 cd $HOME/msfconsole/
 echo "Edit Gemfile.lock in line 218 rb-readline (0.5.4) in (0.5.5)"
 echo "and builde install"
-echo "termux-chroot and gem install rbnacl-libsodium - v '1.0.11'"
 ;;
 3)
 echo "Создаем базу данных"
@@ -77,9 +84,8 @@ mkdir ~/.msfdb
 initdb ~/.msfdb
 pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log start
 echo "Старт сервера"
-createuser msf
-createdb msfdb
-echo "Установка завершена запустите bash msfstart.sh"
+echo "createuser msf and createdb msfdb"
+echo "pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log stop"
 ;;
 4)
 exit 0
