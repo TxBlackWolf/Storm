@@ -68,6 +68,7 @@ echo "Datax ошибка устранена"
 cd $HOME
 gem uninstall rb-readline
 cd $HOME/msfconsole/
+bundle install
 echo "Edit Gemfile.lock in line 218 rb-readline (0.5.4) in (0.5.5)"
 echo "and builde install"
 ;;
