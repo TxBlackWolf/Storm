@@ -15,10 +15,10 @@ Script that performs the initial configuration of the Termux and install Metaspl
 
 Installation...
 
-apt install git
-apt install tsu
-git clone https://github.com/Deathlive/Storm
-tsu
-chmod -R 777 $HOME/Storm
-cd Storm
-bash start.sh
+apt install git <br/>
+apt install tsu <br/>
+git clone https://github.com/Deathlive/Storm <br/>
+tsu <br/>
+chmod -R 777 $HOME/Storm <br/>
+cd Storm <br/>
+bash start.sh <br/>
