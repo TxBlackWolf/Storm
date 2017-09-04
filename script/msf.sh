@@ -50,11 +50,6 @@ echo "Установка GEM"
 cd $HOME/metasploit-framework
 bundle install -j5
 
-echo "Выполнение shebang fix"
-cd $HOME/metasploit-framework
-$PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
-echo "Установка завершена"
-
 cd $HOME
 mv $HOME/metasploit-framework $HOME/msfconsole
 echo "msfconsole установлена, начние пункт 2"
@@ -65,12 +60,11 @@ cd $HOME
 pkg install -y termux-elf-cleaner
 termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.4.0/gems/pg-0.20.0/lib/pg_ext.so
 echo "Datax ошибка устранена"
-cd $HOME
-gem uninstall rb-readline
-cd $HOME/msfconsole/
-bundle install
-echo "Edit Gemfile.lock in line 218 rb-readline (0.5.4) in (0.5.5)"
-echo "and builde install"
+
+echo "Выполнение shebang fix"
+cd $HOME/metasploit-framework
+$PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
+echo "Установка завершена"
 ;;
 3)
 echo "Создаем базу данных"
