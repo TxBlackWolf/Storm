@@ -11,7 +11,7 @@ case $bonus in
 1)
 echo "Начало Установки Reaver"
 cd $HOME
-git clone https://github.com/Deathlive/reaver-wps-fork-t6x
+git clone https://github.com/Deathlive/reaver
 mv $HOME/reaver-wps-fork-t6x $HOME/reaver
 cd $HOME/reaver/src/
 sh configure
@@ -21,9 +21,11 @@ echo "Завершение Установки"
 2)
 echo "Начало Установки Dnschef"
 cd $HOME
+pkg install dnsutils
+pip2 install dnslib ipy
 git clone https://github.com/iphelix/dnschef
 cd $HOME/dmschef/
-echo "Завершение Установки"
+echo "Завершение Установки, python2 dnschef.py"
 ;;
 3)
 cd $HOME
@@ -33,7 +35,7 @@ cd $HOME/sqlmap/
 4)
 cd $HOME
 git clone https://github.com/SpiderLabs/Responder
-cd $HOME/sqlmap/
+cd $HOME/Responder/
 ;;
 *)
 echo "Выберите правильный вариант"
