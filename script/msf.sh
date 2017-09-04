@@ -79,7 +79,7 @@ pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log start
 echo "Старт сервера"
 createuser msf
 createdb msfdb
-echo "Установка авершена запустите bash msfstart.sh"
+echo "Установка завершена запустите bash msfstart.sh"
 ;;
 4)
 exit 0
