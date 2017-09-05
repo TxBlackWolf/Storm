@@ -15,7 +15,7 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
     postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
     postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar
 echo "Dependencies Installed"
-git clone https://github.com/rapid7/metasploit-framework
+git clone https://github.com/rapid7/metasploit-framework --depth 1
 cd $HOME/metasploit-framework/
 gem install bundler
 gem install nokogiri -- --use-system-libraries
