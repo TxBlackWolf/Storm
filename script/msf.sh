@@ -17,6 +17,9 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
 echo "Dependencies Installed"
 git clone https://github.com/rapid7/metasploit-framework --depth 1
 cd $HOME/metasploit-framework/
+sed '/rbnacl/d' -i Gemfile.lock
+sed '/rbnacl/d' -i metasploit-framework.gemspec
+
 gem install bundler
 gem install nokogiri -- --use-system-libraries
 
