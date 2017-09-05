@@ -65,7 +65,7 @@ termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.4.0/gems/pg-0
 echo "Datax error fixed"
 
 echo "Performance shebang fix"
-cd $HOME/metasploit-framework
+cd $HOME/msfconsole
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 echo "Installation completed"
 ;;
