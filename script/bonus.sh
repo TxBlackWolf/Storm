@@ -24,7 +24,6 @@ cd $HOME
 pkg install dnsutils
 pip2 install dnslib ipy
 git clone https://github.com/iphelix/dnschef
-cd $HOME/dmschef/
 echo "End of Setup, python2 dnschef.py"
 ;;
 3)
