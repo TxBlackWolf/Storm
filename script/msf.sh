@@ -66,6 +66,9 @@ echo "Performance shebang fix"
 cd $HOME/msfconsole
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 echo "Installation completed"
+
+ln -s $HOME/msfconsole/msfconsole $PREFIX/bin
+echo "run ./msfconsole or ruby msfconsole"
 ;;
 3)
 echo "Create a database"
