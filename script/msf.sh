@@ -15,11 +15,14 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
     postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
     postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar
 echo "Dependencies Installed"
-git clone https://github.com/rapid7/metasploit-framework
+git clone https://github.com/timwr/metasploit-framework --depth 1
 cd $HOME/metasploit-framework/
+sed 's/rb-readline (0.5.4)/rb-readline (0.5.5)/g' -i $HOME/metasploit-framework/Gemfile.lock
+sed 's/network_interface (0.0.1)/network_interface (0.0.2)/g' -i $HOME/metasploit-framework/Gemfile.lock
 
 gem install bundler
 gem install nokogiri -- --use-system-libraries
+
 
 echo "Install GRPC"
 cd $HOME/metasploit-framework/
@@ -33,19 +36,6 @@ gem build grpc.gemspec
 gem install grpc-1.4.1.gem
 cd ..
 rm -rf grpc-1.4.1
-
-echo "Install rbnacl-libsodium"
-gem unpack rbnacl-libsodium -v'1.0.13'
-cd rbnacl-libsodium-1.0.13
-termux-fix-shebang ./vendor/libsodium/configure ./vendor/libsodium/build-aux/*
-sed 's|">= 3.0.1"|"~> 3.0", ">= 3.0.1"|g' -i rbnacl-libsodium.gemspec
-sed 's|">= 10"|"~> 10"|g' -i rbnacl-libsodium.gemspec
-curl -LO https://Auxilus.github.io/configure.patch
-patch ./vendor/libsodium/configure < configure.patch
-gem build rbnacl-libsodium.gemspec
-gem install rbnacl-libsodium-1.0.13.gem
-cd .. 
-rm -rf rbnacl-libsodium-1.0.13
 
 echo "Install GEM"
 cd $HOME/metasploit-framework
@@ -67,18 +57,18 @@ cd $HOME/msfconsole
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 echo "Installation completed"
 
-ln -s $HOME/msfconsole/msfconsole $PREFIX/bin
-echo "run ./msfconsole or ruby msfconsole"
+ln -s $HOME/msfconsole/msfconsole /data/data/com.termux/files/usr/bin/
+echo "run msfconsole"
 ;;
 3)
 echo "Create a database"
 cd $HOME
-mkdir ~/.msfdb
-initdb ~/.msfdb
-pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log start
+mkdir -p $PREFIX/var/lib/postgresql
+initdb $PREFIX/var/lib/postgresql
+pg_ctl -D $PREFIX/var/lib/postgresql start
 echo "Server start"
 echo "createuser msf and createdb msfdb"
-echo "pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log stop"
+echo "pg_ctl stop Server stop"
 ;;
 4)
 exit 0
