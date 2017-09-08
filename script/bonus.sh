@@ -22,9 +22,8 @@ echo "End of Setup"
 2)
 echo "Start install Dnschef"
 cd $HOME
-pkg install dnsutils
-pip2 install dnslib ipy
 git clone https://github.com/iphelix/dnschef
+pip2 install dnslib ipy
 echo "End of Setup, python2 dnschef.py"
 ;;
 3)
