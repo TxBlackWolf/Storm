@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/sh
 
-echo "Start Install RouterSploit \n"
+echo "Start Install RouterSploit"
 cd $HOME
 git clone https://github.com/reverse-shell/routersploit
 cd $HOME
