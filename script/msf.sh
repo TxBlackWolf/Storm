@@ -15,7 +15,7 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
     postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
     postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar
 echo "Dependencies Installed"
-git clone https://github.com/timwr/metasploit-framework --depth 1
+git clone https://github.com/rapid7/metasploit-framework
 cd $HOME/metasploit-framework/
 sed 's/rb-readline (0.5.4)/rb-readline (0.5.5)/g' -i $HOME/metasploit-framework/Gemfile.lock
 sed 's/network_interface (0.0.1)/network_interface (0.0.2)/g' -i $HOME/metasploit-framework/Gemfile.lock
@@ -58,6 +58,8 @@ $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 echo "Installation completed"
 
 ln -s $HOME/msfconsole/msfconsole /data/data/com.termux/files/usr/bin/
+
+rm -rf $HOME/msfconsole/modules/auxiliary/gather/http_pdf_authors.rb
 echo "run msfconsole"
 ;;
 3)
