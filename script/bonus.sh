@@ -5,7 +5,9 @@ echo "2 Start installation Dnschef"
 echo "3 Start installation Sqlmap"
 echo "4 Start installation Responder"
 echo "5 Start installation theHarvester"
-echo "6 Exit"
+echo "6 Start installation recon-ng"
+echo "7 Start installation viSQL"
+echo "8 Exit"
 read bonus
 
 case $bonus in
@@ -42,6 +44,17 @@ git clone https://github.com/laramies/theHarvester
 echo "End of Setup theHarvester"
 ;;
 6)
+cd $HOME
+git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git
+pip2 install dicttoxml dnspython jsonrpclib lxml mechanize slowaes XlsxWriter olefile PyPDF2 flask unicodecsv
+echo "End of Setup recon-ng"
+;;
+7)
+cd $HOME
+git clone https://github.com/blackvkng/viSQL
+echo "End of Setup viSQL"
+;;
+8)
 exit 0
 ;;
 *)
