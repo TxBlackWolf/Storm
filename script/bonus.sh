@@ -4,7 +4,7 @@ echo "1 Start installation Reaver"
 echo "2 Start installation Dnschef"
 echo "3 Start installation Sqlmap"
 echo "4 Start installation Responder"
-echo "5 Start installation MITMf"
+echo "5 Start installation theHarvester"
 echo "6 Exit"
 read bonus
 
@@ -34,16 +34,12 @@ echo "End of Setup SQLmap"
 cd $HOME
 git clone https://github.com/SpiderLabs/Responder
 cd $HOME/Responder/
+echo "End of Setup Responder"
 ;;
 5)
 cd $HOME
-git clone https://github.com/byt3bl33d3r/MITMf
-pkg install clang python2 python2-dev libjpeg-turbo-dev ndk-sysroot clang
-pip2 install wheel Twisted
-LDFLAGS="-L/system/lib/" 
-CFLAGS="-I/data/data/com.termux/files/usr/include/" 
-pip2 install pillow
-echo "termux-chroot, pip2 install -r requirements.txt"
+git clone https://github.com/laramies/theHarvester
+echo "End of Setup theHarvester"
 ;;
 6)
 exit 0
@@ -52,3 +48,14 @@ exit 0
 echo "Choose the correct option"
 ;;
 esac
+
+#99)
+#cd $HOME
+#git clone https://github.com/byt3bl33d3r/MITMf
+#pkg install clang python2 python2-dev libjpeg-turbo-dev ndk-sysroot clang
+#pip2 install wheel Twisted
+#LDFLAGS="-L/system/lib/" 
+#CFLAGS="-I/data/data/com.termux/files/usr/include/" 
+#pip2 install pillow
+#echo "termux-chroot, pip2 install -r requirements.txt"
+#;;
