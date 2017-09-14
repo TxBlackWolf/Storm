@@ -65,9 +65,9 @@ echo "run msfconsole"
 3)
 echo "Create a database"
 cd $HOME
-mkdir -p $PREFIX/var/lib/postgresql
-initdb $PREFIX/var/lib/postgresql
-pg_ctl -D $PREFIX/var/lib/postgresql start
+mkdir ~/.msfdb
+initdb ~/.msfdb
+pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log start
 echo "Server start"
 echo "createuser msf and createdb msfdb"
 echo "pg_ctl stop Server stop"
