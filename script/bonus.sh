@@ -46,6 +46,7 @@ echo "End of Setup theHarvester"
 6)
 cd $HOME
 git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git
+cp $HOME/Storm/prog/keys.db $HOME/.recon-ng/
 pip2 install dicttoxml dnspython jsonrpclib lxml mechanize slowaes XlsxWriter olefile PyPDF2 flask unicodecsv
 echo "End of Setup recon-ng"
 ;;
