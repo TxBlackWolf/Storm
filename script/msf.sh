@@ -17,9 +17,6 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
 echo "Dependencies Installed"
 git clone https://github.com/rapid7/metasploit-framework --depth 1
 cd $HOME/metasploit-framework/
-sed 's/rb-readline (0.5.4)/rb-readline (0.5.5)/g' -i $HOME/metasploit-framework/Gemfile.lock
-sed 's/network_interface (0.0.1)/network_interface (0.0.2)/g' -i $HOME/metasploit-framework/Gemfile.lock
-
 gem install bundler
 gem install nokogiri -- --use-system-libraries
 
@@ -36,26 +33,15 @@ gem install grpc-1.4.1.gem
 cd ..
 rm -rf grpc-1.4.1
 
-cd $HOME
-gem unpack rbnacl-libsodium -v'1.0.13'
-cd $HOME/rbnacl-libsodium-1.0.13
-termux-fix-shebang ./vendor/libsodium/configure ./vendor/libsodium/build-aux/*
-sed 's|">= 3.0.1"|"~> 3.0", ">= 3.0.1"|g' -i rbnacl-libsodium.gemspec
-sed 's|">= 10"|"~> 10"|g' -i rbnacl-libsodium.gemspec
-curl -LO https://Auxilus.github.io/configure.patch
-patch ./vendor/libsodium/configure < configure.patch
-gem build rbnacl-libsodium.gemspec
-gem install rbnacl-libsodium-1.0.13.gem
-cd $HOME
-rm -rf rbnacl-libsodium-1.0.13
-
 echo "Install GEM"
 cd $HOME/metasploit-framework
 bundle install -j5
 
 cd $HOME
 mv $HOME/metasploit-framework $HOME/msfconsole
-echo "msfconsole installed, Start the option-2"
+echo "-------------------------------"
+echo "use termux-chroot and install = gem install rbnacl-libsodium =, Start the option-2"
+echo "-------------------------------"
 ;;
 2)
 echo "Correct mistakes datax and Shebang-PREFIX"
