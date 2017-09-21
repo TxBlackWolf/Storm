@@ -34,9 +34,11 @@ gem install grpc-1.4.1.gem
 cd ..
 rm -rf grpc-1.4.1
 
+gem install bundler --pre
+
 echo "Install GEM"
 cd $HOME/metasploit-framework
-bundle install -j5
+bundle install
 
 cd $HOME
 mv $HOME/metasploit-framework $HOME/msfconsole
