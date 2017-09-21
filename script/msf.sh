@@ -18,7 +18,7 @@ echo "Dependencies Installed"
 git clone https://github.com/rapid7/metasploit-framework --depth 1
 cd $HOME/metasploit-framework/
 gem install bundler
-gem install nokogiri -- --use-system-libraries
+gem install nokogiri -v '1.8.0' -- --use-system-libraries
 
 echo "Install GRPC"
 cd $HOME/metasploit-framework/
