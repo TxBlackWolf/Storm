@@ -19,7 +19,7 @@ git clone https://github.com/rapid7/metasploit-framework --depth 1
 sed 's/nokogiri (1.8.0)/nokogiri (1.8.1)/g' -i $HOME/metasploit-framework/Gemfile.lock
 cd $HOME/metasploit-framework/
 gem install bundler
-gem install nokogiri -v '1.8.0' -- --use-system-libraries
+gem install nokogiri -- --use-system-libraries
 
 echo "Install GRPC"
 cd $HOME/metasploit-framework/
