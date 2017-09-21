@@ -40,6 +40,9 @@ echo "Install GEM"
 cd $HOME/metasploit-framework
 bundle install
 
+cd $HOME/metasploit-framework/config
+curl -LO https://Auxilus.github.io/database.yml
+
 cd $HOME
 mv $HOME/metasploit-framework $HOME/msfconsole
 echo "-------------------------------"
@@ -65,14 +68,15 @@ echo "run msfconsole"
 ;;
 3)
 echo "Create a database"
-cd $HOME/metasploit-framework/config
-curl -LO https://Auxilus.github.io/database.yml
+
 mkdir -p $PREFIX/var/lib/postgresql
 initdb $PREFIX/var/lib/postgresql
 pg_ctl -D $PREFIX/var/lib/postgresql start
 
-createuser msf
-createdb msf_database
+echo "-------------------------------"
+echo "createuser msf"
+echo "createdb msf_database"
+echo "-------------------------------"
 ;;
 4)
 exit 0
