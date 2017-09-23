@@ -7,7 +7,8 @@ echo "4 Start installation Responder"
 echo "5 Start installation theHarvester"
 echo "6 Start installation recon-ng"
 echo "7 Start installation viSQL"
-echo "8 Exit"
+echo "8 Start installation sudo"
+echo "9 Exit"
 read bonus
 
 case $bonus in
@@ -56,6 +57,13 @@ git clone https://github.com/blackvkng/viSQL
 echo "End of Setup viSQL"
 ;;
 8)
+cd $HOME
+git clone https://github.com/st42/termux-sudo
+cat sudo > /data/data/com.termux/files/usr/bin/sudo
+chmod 700 /data/data/com.termux/files/usr/bin/sudo
+echo "End of Setup sudo"
+;;
+9)
 exit 0
 ;;
 *)
