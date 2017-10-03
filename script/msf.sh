@@ -69,6 +69,7 @@ echo "Create a database"
 cd $HOME/msfconsole/config
 curl -LO https://Auxilus.github.io/database.yml
 
+cd $HOME
 mkdir ~/.msfdb
 initdb ~/.msfdb
 pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log start

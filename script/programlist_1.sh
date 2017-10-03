@@ -19,49 +19,66 @@ mv $HOME/reaver-wps-fork-t6x $HOME/reaver
 cd $HOME/reaver/src/
 sh configure
 make
+echo "----------------------"
 echo "End of Setup Reaver"
+echo "----------------------"
 ;;
 2)
 cd $HOME
 git clone https://github.com/iphelix/dnschef
 pip2 install dnslib ipy
-echo "End of Setup, python2 dnschef.py"
+echo "----------------------"
+echo "End of Setup dnschef"
+echo "python2 dnschef.py"
+echo "----------------------"
 ;;
 3)
 cd $HOME
 git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap
 cd $HOME/sqlmap/
+echo "----------------------"
 echo "End of Setup SQLmap"
+echo "----------------------"
 ;;
 4)
 cd $HOME
 git clone https://github.com/SpiderLabs/Responder
 cd $HOME/Responder/
+echo "----------------------"
 echo "End of Setup Responder"
+echo "----------------------"
 ;;
 5)
 cd $HOME
 git clone https://github.com/laramies/theHarvester
+echo "----------------------"
 echo "End of Setup theHarvester"
+echo "----------------------"
 ;;
 6)
 cd $HOME
 git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git
-cp $HOME/Storm/prog/keys.db $HOME/.recon-ng/
+cp $HOME/Storm/setup/keys.db $HOME/.recon-ng/
 pip2 install dicttoxml dnspython jsonrpclib lxml mechanize slowaes XlsxWriter olefile PyPDF2 flask unicodecsv
+echo "----------------------"
 echo "End of Setup recon-ng"
+echo "----------------------"
 ;;
 7)
 cd $HOME
 git clone https://github.com/blackvkng/viSQL
+echo "----------------------"
 echo "End of Setup viSQL"
+echo "----------------------"
 ;;
 8)
 cd $HOME
 git clone https://github.com/st42/termux-sudo
 cat sudo > /data/data/com.termux/files/usr/bin/sudo
 chmod 700 /data/data/com.termux/files/usr/bin/sudo
+echo "----------------------"
 echo "End of Setup sudo"
+echo "----------------------"
 ;;
 9)
 exit 0

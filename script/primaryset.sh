@@ -4,7 +4,8 @@ echo "Select the Program to install"
 echo "1 Primary setting"
 echo "2 Setup Fish in default SHELL"
 echo "3 Setup Zsh in default SHELL"
-echo "4 Exit"
+echo "4 Install Useful Scripts"
+echo "5 Exit"
 read primary
 
 case $primary in
@@ -26,12 +27,9 @@ echo PS1="\[\033[1;33;1;32m\]:\[\033[1;31m\]\w$ \[\033[0m\]\[\033[0m\]" > .bashr
 chmod u+rwx,g+x .bashrc
 chsh -s fish
 fish
-cd $HOME
-rm -rf $HOME/.local/share/fish/
-cp -r $HOME/Storm/prog/fish/ $HOME/.local/share/
-echo "------------------------------"
+echo "----------------------"
 echo "Setup complete, Fish Installed by Default"
-echo "------------------------------"
+echo "----------------------"
 ;;
 3)
 echo "Setup Zsh in default"
@@ -41,8 +39,29 @@ chmod u+rwx,g+x .bashrc
 chsh -s zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/fornwall/oh-my-zsh/etc-shells-may-not-exist/tools/install.sh)"
 sed 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' -i $HOME/.zshrc
+echo "----------------------"
+echo "Setup complete, Zsh Installed by Default"
+echo "----------------------"
 ;;
 4)
+echo "Install Useful Scripts"
+cd $HOME
+mkdir TopScripts
+cd $HOME/TopScripts
+git clone https://github.com/scipag/vulscan
+echo "----------------------"
+echo "Vulscan install complete"
+echo "use Nmap -sV --script=vulscan/vulscan.nse www.example.com"
+echo "----------------------"
+cp $HOME/Storm/setup/clearCache.sh $HOME/TopScripts
+cp $HOME/Storm/setup/pipUpdate.py $HOME/TopScripts
+cp $HOME/Storm/setup/pip2Update.py $HOME/TopScripts
+cp $HOME/Storm/setup/pgServer.sh $HOME/TopScripts
+echo "----------------------"
+echo "Scripts installed in $HOME/TopScripts"
+echo "----------------------"
+;;
+5)
 exit 0
 ;;
 *)
