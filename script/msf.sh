@@ -65,9 +65,8 @@ echo "run msfconsole"
 ;;
 3)
 echo "Create a database"
-
-cd $HOME/msfconsole/config
-curl -LO https://Auxilus.github.io/database.yml
+cd $HOME
+cp $HOME/Storm/setup/database.yml $HOME/msfconsole/config
 
 cd $HOME
 mkdir ~/.msfdb
@@ -76,7 +75,7 @@ pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log start
 
 echo "-------------------------------"
 echo "createuser msf"
-echo "createdb msf_database"
+echo "createdb msfdb"
 echo "-------------------------------"
 echo "pg_ctl -D ~/.msfdb -l ~/.msfdb/msfdb.log stop"
 echo "-------------------------------"
