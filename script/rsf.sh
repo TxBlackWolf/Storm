@@ -4,6 +4,7 @@ echo "Start Install RouterSploit"
 cd $HOME
 git clone https://github.com/reverse-shell/routersploit
 cd $HOME
+pkg install python2 python2-dev python python-dev coreutils clang libclang libsodium libsodium-dev libtool libffi libffi-dev libgrpc-dev readline-dev
 pip2 install six wheel pycparser cffi requests
 SODIUM_INSTALL=system pip2 install pynacl
 #pkg install libjpeg-turbo-dev
