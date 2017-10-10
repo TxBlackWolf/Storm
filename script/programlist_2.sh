@@ -16,7 +16,7 @@ case $bonus in
 cd $HOME
 git clone https://github.com/joshDelta/Gloom-Framework
 cd $HOME/Gloom-Framework
-pip2 install scapy termcolor urllib2 pythonwhois requests bs4 mechanize datetime email
+pip2 install scapy termcolor pythonwhois requests bs4 mechanize datetime email
 echo "----------------------"
 echo "End of Setup Gloom-Framework"
 echo "python2 gloom.py"
