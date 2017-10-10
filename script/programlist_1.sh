@@ -74,6 +74,7 @@ echo "----------------------"
 8)
 cd $HOME
 git clone https://github.com/st42/termux-sudo
+cd $HOME/termux-sudo
 cat sudo > /data/data/com.termux/files/usr/bin/sudo
 chmod 700 /data/data/com.termux/files/usr/bin/sudo
 echo "----------------------"
