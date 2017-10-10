@@ -37,7 +37,6 @@ echo "----------------------"
 cd $HOME
 git clone https://github.com/sh1nu11bi/Routerhunter-2.0
 cd $HOME/Routerhunter-2.0
-mv $HOME/Routerhunter-2.0 Routerhunter
 pip2 argparse itertools requests random time threading base64 socket
 echo "----------------------"
 echo "End of Setup Routerhunter"
