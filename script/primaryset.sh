@@ -15,7 +15,7 @@ cd $HOME
 pkg update
 pkg upgrade
 pkg install -y python2 python2-dev python python-dev git nmap hydra nano ncdu proot fish zsh tsu coreutils wget tar \
-bash termux-exec clang curl libclang macchanger make man openssl openssl-dev dnsutils libsodium libsodium-dev libtool
+bash termux-exec clang curl libclang macchanger make man openssl openssl-dev dnsutils libsodium libsodium-dev libtool libxslt libxslt-dev
 echo "------------------"
 echo "Setup complete"
 echo "------------------"
