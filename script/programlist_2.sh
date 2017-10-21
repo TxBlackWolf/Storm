@@ -45,7 +45,7 @@ echo "----------------------"
 ;;
 4)
 cd $HOME
-pkg install build-essential python-dev libnetfilter-queue-dev
+apt install build-essential python-dev libnetfilter-queue-dev
 git clone https://github.com/m4n3dw0lf/sslkill
 cd $HOME/sslkill
 pip2 install -r requirements.txt
@@ -66,7 +66,7 @@ echo "----------------------"
 ;;
 6)
 cd $HOME
-pkg install php
+apt install php
 git clone https://github.com/Tuhinshubhra/RED_HAWK
 cd $HOME/RED_HAWK
 echo "----------------------"
