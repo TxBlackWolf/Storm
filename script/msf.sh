@@ -49,7 +49,7 @@ echo "-------------------------------"
 2)
 echo "Correct mistakes datax and Shebang-PREFIX"
 cd $HOME
-pkg install -y termux-elf-cleaner
+apt install -y termux-elf-cleaner
 termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.4.0/gems/pg-0.20.0/lib/pg_ext.so
 echo "Datax error fixed"
 
