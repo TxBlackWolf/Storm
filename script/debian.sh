@@ -16,7 +16,7 @@ read debinstal
 case $debinstal in
 1)
 cd $HOME
-еcho bash $HOME/bin/enter-deb -n > .bashrc
+еcho 'bash $HOME/bin/enter-deb -n -p' > .bashrc
 apt update
 apt install git
 git clone https://github.com/sp4rkie/debian-on-termux
@@ -27,6 +27,7 @@ echo -en "\033[31 Complete Install, Reboot Terminal \033[31"
 ;;
 2)
 cd $HOME
+apt update -y
 apt install fish python-pip python net-tools wireless-tools curl git nmap 
 curl -L https://get.oh-my.fish | fish
 omf install flash
