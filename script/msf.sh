@@ -11,9 +11,9 @@ case $msfgo in
 cd $HOME
 apt update
 apt upgrade
-apt install autoconf bison clang coreutils curl findutils git apr apr-util libffi libffi-dev libgmp-dev libpcap-dev \
+pkg install autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev \
     postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
-    postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar
+    postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses ncurses-utils libsodium-dev termux-exec
 echo "Dependencies Installed"
 git clone https://github.com/rapid7/metasploit-framework --depth 1
 #sed 's/nokogiri (1.8.0)/nokogiri (1.8.1)/g' -i $HOME/metasploit-framework/Gemfile.lock
