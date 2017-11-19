@@ -26,7 +26,8 @@ cd $HOME
 echo PS1="\[\033[1;33;1;32m\]:\[\033[1;31m\]\w$ \[\033[0m\]\[\033[0m\]" > .bashrc
 chmod u+rwx,g+x .bashrc
 chsh -s fish
-fish
+curl -L https://get.oh-my.fish | fish
+omf install bobthefish
 echo "----------------------"
 echo "Setup complete, Fish Installed by Default"
 echo "----------------------"
